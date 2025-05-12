@@ -196,6 +196,7 @@ class Channels(PluginChannels):
                             thumb_size = self.get_thumbnail_size(thumb, 2, uid)
                         ch['thumbnail'] = thumb
                         ch['thumbnail_size'] = thumb_size
+                        ch['content_uid'] = ch_db_data[0]['content_uid']
                     else:
                         ch['id'] = uid
                         ch['name'] = name
