@@ -352,10 +352,11 @@ class Channels(PluginChannels):
                     enabled = ch['enabled']
                 else:
                     enabled = ch_db_data[0]['enabled']
+                content_uid = ch_db_data[0]['content_uid']
                 display_name = ch_db_data[0]['display_name']
                 hd = ch_db_data[0]['json']['HD']
-                thumb = ch_db_data[0]['json']['thumbnail']
-                thumb_size = ch_db_data[0]['json']['thumbnail_size']
+                thumb = ch_db_data[0]['thumbnail']
+                thumb_size = ch_db_data[0]['thumbnail_size']
                 self.groups_other = ch_db_data[0]['json']['groups_other']
                 if not ch_db_data[0]['enabled']:
                     ref_url = ch_db_data[0]['json']['ref_url']
@@ -370,6 +371,7 @@ class Channels(PluginChannels):
                 self.logger.info('{}:{} 2 New Channel Added {}:{}'
                     .format(self.plugin_obj.name, self.instance_key, uid, name))
                 display_name = name
+                content_uid = None
                 if ch:
                     enabled = ch['enabled']
                 else:
@@ -419,6 +421,7 @@ class Channels(PluginChannels):
                 'ref_url': ref_url,
                 'use_date_on_m3u8_key': False,
                 'channel_ref': channel_ref,
+                'content_uid': content_uid,
             }
             results.append(channel)
 
