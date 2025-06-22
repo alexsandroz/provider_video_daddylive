@@ -352,7 +352,6 @@ class Channels(PluginChannels):
                     enabled = ch['enabled']
                 else:
                     enabled = ch_db_data[0]['enabled']
-                content_uid = ch_db_data[0]['content_uid']
                 display_name = ch_db_data[0]['display_name']
                 hd = ch_db_data[0]['json']['HD']
                 thumb = ch_db_data[0]['thumbnail']
@@ -371,7 +370,6 @@ class Channels(PluginChannels):
                 self.logger.info('{}:{} 2 New Channel Added {}:{}'
                     .format(self.plugin_obj.name, self.instance_key, uid, name))
                 display_name = name
-                content_uid = None
                 if ch:
                     enabled = ch['enabled']
                 else:
@@ -421,7 +419,10 @@ class Channels(PluginChannels):
                 'ref_url': ref_url,
                 'use_date_on_m3u8_key': False,
                 'channel_ref': channel_ref,
-                'content_uid': content_uid,
+                'content_uid': data.get('content_uid'),
+                'last_seen': data.get('last_seen'),
+                'next_connection': data.get('next_connection'),
+                'error_count': data.get('error_count')
             }
             results.append(channel)
 
