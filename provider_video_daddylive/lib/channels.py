@@ -401,7 +401,12 @@ class Channels(PluginChannels):
                           }
             if type(self.groups_other) == list:
                 self.groups_other = ' | '.join(self.groups_other)
-            channel = {
+
+            if data is not None:
+                channel = data
+            else:
+                channel = {}
+            channel.update({
                 'id': uid,
                 'enabled': enabled,
                 'callsign': uid,
@@ -419,11 +424,7 @@ class Channels(PluginChannels):
                 'ref_url': ref_url,
                 'use_date_on_m3u8_key': False,
                 'channel_ref': channel_ref,
-                'content_uid': data.get('content_uid'),
-                'last_seen': data.get('last_seen'),
-                'next_connection': data.get('next_connection'),
-                'error_count': data.get('error_count')
-            }
+            })
             results.append(channel)
 
         found_tvg_list = [u for u in ch_list if u.get('found') is None]
